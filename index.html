@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Newsletter Maker</title>
+	<style>
+		.maker {position:relative;width:calc(40% - 4rem);display:inline-block;vertical-align: top;margin-right:4rem;}
+		.maker textarea, .maker input {width:100%;}
+		input[type=checkbox] {width: auto;}
+		section {display: none;}
+		input:checked + section {display: block;}
+		.result {width:calc(60% - 4rem);display:inline-block;vertical-align: top;}
+		iframe {height:100vh; min-height: 940px; width:100%;border:1px solid #ccc;}
+		@keyframes spin {
+		  0% { transform: translate(-50%, -50%) rotateY(0deg) rotateX(45deg); }
+		  50% { transform: translate(-50%, -50%) rotateY(180deg) rotateX(57deg); }
+		  100% { transform: translate(-50%, -50%) rotateY(359deg) rotateX(45deg); }
+		}
+		.spinner {
+			display:none;
+			position: absolute;
+			border: 2px solid rgba(0, 53, 255, 0.74);
+			top: 4rem;
+			left: 50%;
+			border-radius: 50%;
+			width: 40px;
+			height: 40px;
+			opacity: 0.9;
+			transform-style: preserve-3d;
+			animation: spin 1s linear infinite;
+		}
+		.spinner.wait {display:block;}
+	</style>
+</head>
+<body>
+	<div class="maker">
+		<div class="spinner"></div>
+		<textarea id="result" cols="30" rows="10"></textarea>
+		<form>
+			<button id="submit">Make!</button><br><br>
+
+			<label for="promo-check">Include Promos?</label>
+			<input type="checkbox" name="promo-check" id="promo-check">
+			<section class="pomo-section">
+				<input name="copy-promo-1" type="text" placeholder="promo copy"><br>
+				<input name="copy-promo-2" type="text" placeholder="button copy"><br>
+				<input name="copy-promo-3" type="text" placeholder="under button copy"><br>
+			</section>
+
+			<h4>Info</h4>
+			<input name="copy-preheader" type="text" placeholder="preheader"><br>
+			<input name="copy-date" type="text" placeholder="date"><br>
+
+			<h4>Ads</h4>
+			<input name="copy-ad-1" type="text" placeholder="ad position 1"><br>
+			<input name="copy-ad-2" type="text" placeholder="ad position 2"><br>
+			<input name="copy-ad-3" type="text" placeholder="ad position 3"><br>
+
+			<h4>Words of Wisdom</h4>
+			<input name="copy-wisdom_text" type="text" placeholder="words of wisdom"><br>
+			<input name="copy-wisdom_author"  name="a1"type="text" placeholder="words of wisdom author"><br>
+
+			<h4>MORNING BRIEF TOP NEWS</h4>
+			<input name="article-news-1" type="url" placeholder="paste article link"><br>
+			<input name="article-news-2" type="url" placeholder="paste article link"><br>
+			<input name="article-news-3" type="url" placeholder="paste article link"><br>
+			<input name="article-news-4" type="url" placeholder="paste article link"><br>
+			<input name="article-news-5" type="url" placeholder="paste article link"><br>
+			<input name="article-news-6" type="url" placeholder="paste article link"><br>
+			<input name="article-news-7" type="url" placeholder="paste article link"><br>
+			<input name="article-news-8" type="url" placeholder="paste article link"><br>
+
+			<h4>Positive News</h4>
+			<input name="article-positive-1" type="url" placeholder="paste article link"><br>
+
+			<h4>Opinion</h4>
+			<input name="article-opinion-1" type="url" placeholder="paste article link"><br>
+			<input name="article-opinion-2" type="url" placeholder="paste article link"><br>
+
+			<h4>Epoch TV</h4>
+			<input name="article-epochtv-1" type="url" placeholder="paste article link"><br>
+			<input name="article-epochtv-2" type="url" placeholder="paste article link"><br>
+
+			<h4>Puzzles</h4>
+			<input name="copy-puzzle_link" type="url" placeholder="paste puzzle link">
+		</form>
+	</div>
+	<div class="result">
+		<iframe frameborder="0"></iframe>
+	</div>
+	
+</body>
+</html>
