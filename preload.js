@@ -7,9 +7,13 @@ window.addEventListener('DOMContentLoaded', async () => {
 		var form = document.querySelector('form')
 		var data = new FormData(form)
 
+		console.log(data)
+
 		for (var key of data.keys()) {
-			if(key.includes('article-'))
+			if(key.includes('article-')) {
 				content[key] = await getArticle(data.get(key), key)
+				console.log(content[key])
+			}
 			else
 				content[key] = data.get(key)
 		}
@@ -42,8 +46,10 @@ async function makeNewsletter(c) {
 			template = template.replace((new RegExp('\{\{'+key+'\}\}',"g")), opinionMake(c[key]))
 		
 
-		else if(key.includes('article-'))
+		else if(key.includes('article-')){
 			template = template.replace((new RegExp('\{\{'+key+'\}\}',"g")), articleMake(c[key]))
+			console.log(key)
+		}
 
 		else if(key.includes('promo'))
 			promoFlag = true
@@ -69,6 +75,8 @@ async function makeNewsletter(c) {
 		if(!post) return ''
 		let a = article.replace((new RegExp('\{\{article-link\}\}',"g")), post.url)
 		a = a.replace((new RegExp('\{\{article-title\}\}',"g")), post.title)
+		a = a.replace((new RegExp('\{\{three_word_from_title\}\}',"g")), post.first_three_word)
+		a = a.replace((new RegExp('\{\{date\}\}',"g")), getDate())
 		return a.replace((new RegExp('\{\{article-img\}\}',"g")), post.img)
 	}
 
@@ -77,7 +85,18 @@ async function makeNewsletter(c) {
 		let a = opinion.replace((new RegExp('\{\{article-link\}\}',"g")), post.url)
 		a = a.replace((new RegExp('\{\{article-title\}\}',"g")), post.title)
 		a = a.replace((new RegExp('\{\{article-img\}\}',"g")), post.img)
+		a = a.replace((new RegExp('\{\{three_word_from_title\}\}',"g")), post.first_three_word)
+		a = a.replace((new RegExp('\{\{date\}\}',"g")), getDate())
 		return a.replace((new RegExp('\{\{article-author\}\}',"g")), post.author)
+	}
+
+	function getDate(){
+		var today = new Date();
+		var dd = String(today.getDate()).padStart(2, '0');
+		var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+		var yyyy = today.getFullYear();
+
+		return yyyy + "-" + mm + "-" + dd
 	}
 
 	async function openTemplate(filepath) {
@@ -102,6 +121,7 @@ async function getArticle(url, key) {
 	if(dom.querySelector('#video_poster')) {
 		var img = dom.querySelector('#video_poster').getAttribute('data-poster')
 		var title = dom.querySelector('.title').innerText
+		var first_three_word = "TV_" + title.replace("’","").split(" ")[0] + "_" + title.replace("’","").split(" ")[1] + "_" + title.replace("’","").split(" ")[2]
 	}
 
 	else {
@@ -110,6 +130,8 @@ async function getArticle(url, key) {
 		if(key.includes('opinion')) {
 			var img = dom.querySelector('.author .avatar img').src
 			author = dom.querySelector('.author .name').innerText
+			var title = dom.querySelector('.title').innerText
+			var first_three_word = "Op_CA_" + title.replace("’","").split(" ")[0] + "_" + title.replace("’","").split(" ")[1] + "_" + title.replace("’","").split(" ")[2]
 		}
 
 		//IF OTHER ARTICLE
@@ -117,9 +139,10 @@ async function getArticle(url, key) {
 			var img = dom.querySelector('.featured_img img').src
 		
 		var title = dom.querySelector('.post_title h1').innerText
+		var first_three_word = "News_" + title.replace("’","").split(" ")[0] + "_" + title.replace("’","").split(" ")[1] + "_" + title.replace("’","").split(" ")[2]
 	}
 		
-	return {url, img, title, author}
+	return {url, img, title, author, first_three_word}
 
 	async function getSourceAsDOM(url) {
 	    parser = new DOMParser()
