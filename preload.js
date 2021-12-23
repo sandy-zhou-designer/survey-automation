@@ -124,6 +124,12 @@ async function getArticle(url, key) {
 		var first_three_word = "TV_" + title.replace("’","").split(" ")[0] + "_" + title.replace("’","").split(" ")[1] + "_" + title.replace("’","").split(" ")[2]
 	}
 
+	else if(dom.querySelector('.header.bright')) {
+		var img = dom.querySelector('.featured_image img').src
+		var title = dom.querySelector('h1').innerText
+		var first_three_word = "News_" + title.replace("’","").split(" ")[0] + "_" + title.replace("’","").split(" ")[1] + "_" + title.replace("’","").split(" ")[2]
+	}
+
 	else {
 
 		//IF OPINION ARTICLE
