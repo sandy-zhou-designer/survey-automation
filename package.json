@@ -19,7 +19,8 @@
     "electron": "^13.2.1"
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "html-minifier": "^4.0.0"
   },
   "config": {
     "forge": {
