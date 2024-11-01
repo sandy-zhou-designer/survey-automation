@@ -7,7 +7,8 @@ function createWindow () {
     width: 800,
     height: 600,
     webPreferences: {
-      nativeWindowOpen: true,
+      sandbox:false,
+      // nativeWindowOpen: true,
       preload: path.join(__dirname, 'preload.js')
     }
   })

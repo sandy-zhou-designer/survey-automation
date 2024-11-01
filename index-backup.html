@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Survey Result Maker</title>
+	
+
+
+
+
+	<style>
+		.maker {position:relative;width:calc(40% - 4rem);display:inline-block;vertical-align: top;margin-right:4rem;}
+		.maker textarea {width:100%;}
+		h4{margin-bottom:4px}
+		input[type=checkbox] {width: auto;}
+		section {display: none;}
+
+		section.active{display: block!important}
+		
+		input:checked + section {display: block;}
+		.result {width:calc(60% - 4rem);display:inline-block;vertical-align: top;}
+		iframe {height:100vh; min-height: 940px; width:100%;border:1px solid #ccc;}
+		@keyframes spin {
+		  0% { transform: translate(-50%, -50%) rotateY(0deg) rotateX(45deg); }
+		  50% { transform: translate(-50%, -50%) rotateY(180deg) rotateX(57deg); }
+		  100% { transform: translate(-50%, -50%) rotateY(359deg) rotateX(45deg); }
+		}
+
+		.spacer{height:30px}
+		.spinner {
+			display:none;
+			position: absolute;
+			border: 2px solid rgba(0, 53, 255, 0.74);
+			top: 4rem;
+			left: 50%;
+			border-radius: 50%;
+			width: 40px;
+			height: 40px;
+			opacity: 0.9;
+			transform-style: preserve-3d;
+			animation: spin 1s linear infinite;
+		}
+		.spinner.wait {display:block;}
+		.mb5{margin-bottom:5px;margin-top:20px;font-family:Arial,Sans-serif;}
+		.greyout{opacity:0.5;user-select: none}
+		input{margin-bottom:5px;}
+		.small-tag{font-family:Arial,Sans-serif;font-size: 12px;font-weight: 500;line-height: 125%; letter-spacing: -0.14px;text-transform: uppercase;text-transform:uppercase;color: #BA0000;margin-top:5px}
+		.hide{display:none}
+	</style>
+	
+
+</head>
+<body>
+	<div class="maker">
+		<div class="spinner"></div>
+		<textarea id="result" cols="30" rows="10"></textarea>
+		<form>
+			<button id="submit">Make!</button><br><br>
+
+
+			<div class="newsletter-topic">
+				<h4>Newsletter Template</h4>
+			
+				<label for="morningbrief"><input checked type="radio" id="morningbrief" name="newsletter" value="morningbrief">Survey Result</label>
+			
+
+			</div>
+
+			
+
+
+
+			<div id="userType">
+				<h4>User Type</h4>
+					<label for="paid"><input  checked  type="radio" id="paid" name="userType" value="paid">Paid</label>	
+					<label for="free"><input type="radio" id="free" name="userType" value="free">Free</label>
+					<label for="cancel"><input  type="radio" id="cancel" name="userType" value="cancel">Canceled</label>	
+
+
+			</div>
+
+			<div class="spacer"></div>
+
+
+			<h4>Info</h4>
+			<input name="copy-title" type="text" placeholder="Your Title" required><br>
+			<input name="copy-preheader" type="text" placeholder="preheader" required><br>
+			<input name="copy-date" type="text" placeholder="date"><br>
+			<textarea name="copy-editor-message" id="editor-message" type="text" placeholder="Editor's Message" rows="4" cols="50" ></textarea>
+
+			<!-- <h4>Ads</h4>
+			<input name="copy-ad-1" type="text" placeholder="ad position 1"><br>
+			<input name="copy-ad-2" type="text" placeholder="ad position 2"><br>
+			<input name="copy-ad-3" type="text" placeholder="ad position 3"><br>
+
+			<h4>Words of Wisdom</h4>
+			<input name="copy-wisdom_text" type="text" placeholder="words of wisdom"><br>
+			<input name="copy-wisdom_author"  name="a1"type="text" placeholder="words of wisdom author"><br> -->
+			<section class="morningbrief newsletter-ca active">
+				<h4>Morning Brief</h4>
+
+				<p class="mb5">Editor's Highlights</p>
+						<textarea name="content-text-1" type="text" placeholder="First artilce text" rows="4" cols="50"></textarea>
+				<input name="top-news-1" type="url" placeholder="paste article link" alt="highlight-news-1"><br>
+		
+					<textarea name="content-text-2" type="text" placeholder="Second artilce text" rows="4" cols="50"></textarea>
+				<input name="highlight-news-1" type="url" placeholder="paste article link" alt="highlight-news-2"><br>
+				<textarea name="content-text-3" type="text" placeholder="Second artilce text" rows="4" cols="50"></textarea>
+				<input name="highlight2-news-1" type="url" placeholder="paste article link" alt="highlight-news-3"><br>
+			
+				
+
+				<p class="mb5">More top stories</p>
+				<input name="article-news-1" type="url" placeholder="paste article link" alt="more-top-news-1"><br>
+				<input name="article-news-2" type="url" placeholder="paste article link" alt="more-top-news-2"><br>
+				<input name="article-news-3" type="url" placeholder="paste article link" alt="more-top-news-3"><br>
+				<input name="article-news-4" type="url" placeholder="paste article link" alt="more-top-news-4"><br>
+				<input name="article-news-5" type="url" placeholder="paste article link" alt="more-top-news-5"><br>
+				<input name="article-news-6" type="url" placeholder="paste article link" alt="more-top-news-6"><br>
+				<input name="article-news-7" type="url" placeholder="paste article link" alt="more-top-news-7"><br>
+				<input name="article-news-8" type="url" placeholder="paste article link" alt="more-top-news-8"><br>
+				<input name="article-news-9" type="url" placeholder="paste article link" alt="more-top-news-9"><br>
+				<input name="article-news-10" type="url" placeholder="paste article link" alt="more-top-news-10"><br>
+				<input name="article-news-11" type="url" placeholder="paste article link" alt="more-top-news-11"><br>
+				<input name="article-news-12" type="url" placeholder="paste article link" alt="more-top-news-12"><br>
+				
+
+			
+
+
+
+
+
+			</section>
+
+
+
+			
+
+	
+		</form>
+		<br>
+		<button id="clear-all">clear all</button><br>
+		<button class="mb5" id="fillForm">Grab data from Google</button>
+	</div>
+	<div class="result">
+		<iframe frameborder="0"></iframe>
+	</div>
+
+	<script>
+		(function () {
+			document.querySelectorAll('input').forEach(function (field) {
+				field.value = localStorage.getItem(field.name)
+
+				field.addEventListener('blur', function (e) {
+					// console.log(e.target.name)
+					localStorage.setItem(e.target.name, e.target.value);
+				})
+			})
+			document.querySelectorAll('textarea').forEach(function (field) {
+				field.value = localStorage.getItem(field.name)
+
+				field.addEventListener('blur', function (e) {
+					// console.log(e.target.name)
+					localStorage.setItem(e.target.name, e.target.value);
+				})
+			})
+
+			document.getElementById('clear-all').addEventListener('click', function () {
+				document.querySelectorAll('input').forEach(function (field) {field.value = ''})
+				document.querySelectorAll('textarea').forEach(function (field) {field.value = ''})
+			})
+		})()
+	</script>
+	
+</body>
+</html>
